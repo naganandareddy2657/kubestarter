@@ -7,3 +7,8 @@ nodes:
     image: kindest/node:v1.33.1
   - role: worker
     image: kindest/node:v1.33.1
+    extraPortMapping:
+      containerPort: 80
+      hostport: 80
+      protocol: tcp
+      containerPort: 443
