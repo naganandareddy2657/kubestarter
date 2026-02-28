@@ -1,0 +1,27 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: minuate-backup
+  namespace: nginx
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: minuate-backup
+          labels:
+            app: minuate-backup
+        spec:
+          containers:
+          - name: backup-container
+            image: busybox:latest
+            command:
+            - sh
+            - -c
+            - >
+              echo "Backup-Taken" ;
+              mkdir -p /Backup &&
+              mkdir -p /demo-data &&
+              echo "Backup completed" ;
+          restartPolicy: OnFailure
