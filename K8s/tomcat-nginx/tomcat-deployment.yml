@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: tomcat-deployment
-  namespace: tomcat
+  namespace: tomcat-nginx
 spec:
   replicas: 2
   selector:

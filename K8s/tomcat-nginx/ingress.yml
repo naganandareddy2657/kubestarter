@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: tomcat-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app.naga.local
+    http:
+      paths:
+      - path: /nginx
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 4000
+      - path: /tomcat
+        pathType: Prefix
+        backend:
+          service:
+            name: tomcat-service
+            port:
+              number: 3001
